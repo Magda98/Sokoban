@@ -1,0 +1,33 @@
+Renderer.1 {
+    font = "ChakraPetch-Regular.ttf";
+    textcolor = rgb(100, 100, 100);
+    texture = "themes/BabyBlue.png" Part(269, 40, 90, 60) Middle(30, 0, 30, 60);
+    texturedisabled = None;
+    texturedown = "themes/BabyBlue.png" Part(177, 40, 90, 60) Middle(30, 0, 30, 60);
+    texturefocused = None;
+    texturehover = "themes/BabyBlue.png" Part(361, 40, 90, 60) Middle(30, 0, 30, 60);
+}
+
+Button."retry" {
+    Position = (706, 260);
+    Size = (68, 40);
+    Text = "powtórz";
+    TextSize = 13;
+    renderer = &1;
+}
+
+Button."menu" {
+    Position = (706, 350);
+    Size = (68, 40);
+    Text = "menu";
+    TextSize = 13;
+    renderer = &1;
+}
+
+Button."save" {
+    Position = (706, 305);
+    Size = (68, 40);
+    Text = "zapisz";
+    TextSize = 13;
+    renderer = &1;
+}

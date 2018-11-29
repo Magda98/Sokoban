@@ -1,0 +1,53 @@
+Renderer.1 {
+    textcolor = rgb(100, 100, 100);
+    texture = "themes/BabyBlue.png" Part(269, 40, 90, 60) Middle(30, 0, 30, 60);
+    texturedisabled = None;
+    texturedown = "themes/BabyBlue.png" Part(177, 40, 90, 60) Middle(30, 0, 30, 60);
+    texturefocused = None;
+    texturehover = "themes/BabyBlue.png" Part(361, 40, 90, 60) Middle(30, 0, 30, 60);
+     font = "ChakraPetch-Regular.ttf";
+}
+
+Panel."Widget1" {
+    Position = (180, 160);
+    Size = (430, 215);
+
+    Renderer {
+        backgroundcolor = rgb(80, 80, 80);
+    }
+}
+
+Button."Widget2" {
+    Position = (270, 280);
+    Size = (80, 29.3333);
+    Text = "powtórz";
+    TextSize = 13;
+    renderer = &1;
+}
+
+
+Button."Widget3" {
+    Position = (450, 280);
+    Size = (80, 29.3333);
+    Text = "kolejny";
+    TextSize = 13;
+    renderer = &1;
+}
+
+Label."Widget4" {
+    Position = (340, 190);
+    Size = (97.2, 27.6774);
+    Text = "Brawo!";
+    TextSize = 25;
+     font = "ChakraPetch-Regular.ttf";
+    Renderer {
+        textcolor = rgb(190, 190, 190);
+    }
+}
+Button."Widget5" {
+    Position = (360, 280);
+    Size = (80, 29.3333);
+    Text = "menu";
+    TextSize = 13;
+    renderer = &1;
+}

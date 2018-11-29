@@ -1,0 +1,62 @@
+Panel."Widget1" {
+    Position = (650, 40);
+    Size = (170, 162.917);
+
+    Renderer {
+        backgroundcolor = rgba(180, 180, 180, 215);
+    }
+}
+
+TextBox."Widget3" {
+    MaximumCharacters = 0;
+    Position = (670, 60);
+    Size = (118, 118.889);
+    Text = "ilosc kroków:";
+    TextSize = 15;
+
+    Renderer {
+        caretcolor = rgb(110, 110, 255);
+        padding = (3, 3, 3, 3);
+        selectedtextbackgroundcolor = rgb( 10, 110, 255);
+        selectedtextcolor = White;
+        textcolor = rgb(190, 190, 190);
+        texturebackground = "themes/Black.png" Part(0, 154, 48, 48) Middle(16, 16, 16, 16);
+    
+        scrollbar {
+            texturearrowdown = "themes/Black.png" Part(163, 174, 20, 20) Middle(0, 1, 20, 19);
+            texturearrowdownhover = "themes/Black.png" Part(183, 174, 20, 20) Middle(0, 1, 20, 19);
+            texturearrowup = "themes/Black.png" Part(163, 154, 20, 20) Middle(0, 0, 20, 19);
+            texturearrowuphover = "themes/Black.png" Part(183, 154, 20, 20) Middle(0, 0, 20, 19);
+            texturethumb = "themes/Black.png" Part(143, 154, 20, 20);
+            texturethumbhover = "themes/Black.png" Part(143, 174, 20, 20);
+            texturetrack = "themes/Black.png" Part(123, 154, 20, 20);
+            texturetrackhover = "themes/Black.png" Part(123, 174, 20, 20);
+        }
+    }
+}
+
+TextBox."Widget4" {
+    MaximumCharacters = 0;
+    Position = (690, 100);
+    Size = (78, 52.7431);
+    Text = "";
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = rgb(210, 210, 210);
+        bordercolor = White;
+        borders = (2, 2, 2, 2);
+        caretcolor = rgb(145, 180, 190);
+        selectedtextbackgroundcolor = rgb(190, 225, 235);
+        selectedtextcolor = rgb(150, 150, 150);
+        textcolor = rgb(100, 100, 100);
+        texturebackground = None;
+    
+        scrollbar {
+            texturearrowdown = "themes/BabyBlue.png" Part(20, 2, 16, 16);
+            texturearrowup = "themes/BabyBlue.png" Part(2, 2, 16, 16);
+            texturethumb = "themes/BabyBlue.png" Part(414, 2, 16, 32);
+            texturetrack = "themes/BabyBlue.png" Part(432, 2, 16, 32);
+        }
+    }
+}

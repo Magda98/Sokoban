@@ -1,0 +1,40 @@
+Renderer.1 {
+    textcolor = rgb(100, 100, 100);
+    texture = "themes/BabyBlue.png" Part(269, 40, 90, 60) Middle(30, 0, 30, 60);
+    texturedisabled = None;
+    texturedown = "themes/BabyBlue.png" Part(177, 40, 90, 60) Middle(30, 0, 30, 60);
+    texturefocused = None;
+    texturehover = "themes/BabyBlue.png" Part(361, 40, 90, 60) Middle(30, 0, 30, 60);
+}
+
+Button."Widget1" {
+    Position = (118, 240);
+    Size = (108, 37.2414);
+    Text = "Kreator";
+    TextSize = 13;
+    renderer = &1;
+}
+
+Button."Widget2" {
+    Position = (280, 240);
+    Size = (108, 37.2414);
+    Text = "Edycja";
+    TextSize = 13;
+    renderer = &1;
+}
+
+Button."Widget3" {
+    Position = (442, 240);
+    Size = (108, 37.2414);
+    Text = "Usuwanie";
+    TextSize = 13;
+    renderer = &1;
+}
+Button."Widget4" {
+    Position = (604, 240);
+    Size = (108, 37.2414);
+    Text = "Menu";
+    TextSize = 13;
+    renderer = &1;
+}
+
