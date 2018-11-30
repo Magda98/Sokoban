@@ -31,3 +31,24 @@ Button."save" {
     TextSize = 13;
     renderer = &1;
 }
+
+TextBox."steps" {
+    MaximumCharacters = 0;
+    Position = (680, 83);
+    ReadOnly = true;
+    Size = (120, 120);
+    Text = "";
+    TextSize = 18;
+
+    Renderer {
+        backgroundcolor = rgb(210, 210, 210);
+        bordercolor = White;
+        borders = (2, 2, 2, 2);
+        caretcolor = rgb(145, 180, 190);
+        selectedtextbackgroundcolor = rgb(190, 225, 235);
+        selectedtextcolor = rgb(150, 150, 150);
+        textcolor = rgb(100, 100, 100);
+        texturebackground = None;
+    }
+}
+

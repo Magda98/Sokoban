@@ -262,7 +262,6 @@ void Run::runGame(sf::Event & event)
 		}
 		window.draw(game.getPlayer());
 		menu.getSteps()->setText("\n kroki: " + std::to_string(game.getSteps()) + "\n \n poziom: " + std::to_string(lvl));
-		menu.drawGui();
 		menu.drawSide();
 		window.display();
 }
@@ -278,6 +277,7 @@ void Run::runWin(sf::Event & event)
 			exit(0);
 		}
 	}
+	menu.getStepsTextBox()->setText("kroki: " + std::to_string(game.getSteps()));
 		menu.setWinEventHandler(event);
 		menu.setLvl(lvl);
 		window.clear(Color(55, 100, 100, 255));

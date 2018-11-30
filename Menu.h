@@ -25,10 +25,8 @@ private:
 	void getWidgetlist();
 	int lvl;
 	std::vector<tgui::Button::Ptr> lvList;
-	tgui::Gui gui;
 public:
 	Menu(sf::RenderWindow &window, tgui::Theme &theme, sf::Texture &sokoban);
-	void createSteps(sf::RenderWindow &window);
 	void setMainEventHandler(sf::Event &event);
 	void setSideEventHandler(sf::Event & event);
 	void setLvlEventHandler(sf::Event & event);
@@ -42,9 +40,9 @@ public:
 	std::vector<tgui::Widget::Ptr>  getEditButtons();
 	std::vector<tgui::Button::Ptr> & getLvlButtons();
 	tgui::TextBox::Ptr getSteps();
+	tgui::Label::Ptr getStepsTextBox();
 	TileMap getTheme();
 	TileMap getbTheme();
-	void drawGui();
 	void drawMain();
 	void drawSide();
 	void drawEdit();

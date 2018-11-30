@@ -1,11 +1,11 @@
 Renderer.1 {
+    font = "ChakraPetch-Regular.ttf";
     textcolor = rgb(100, 100, 100);
     texture = "themes/BabyBlue.png" Part(269, 40, 90, 60) Middle(30, 0, 30, 60);
     texturedisabled = None;
     texturedown = "themes/BabyBlue.png" Part(177, 40, 90, 60) Middle(30, 0, 30, 60);
     texturefocused = None;
     texturehover = "themes/BabyBlue.png" Part(361, 40, 90, 60) Middle(30, 0, 30, 60);
-     font = "ChakraPetch-Regular.ttf";
 }
 
 Panel."Widget1" {
@@ -25,7 +25,6 @@ Button."Widget2" {
     renderer = &1;
 }
 
-
 Button."Widget3" {
     Position = (450, 280);
     Size = (80, 29.3333);
@@ -39,15 +38,27 @@ Label."Widget4" {
     Size = (97.2, 27.6774);
     Text = "Brawo!";
     TextSize = 25;
-     font = "ChakraPetch-Regular.ttf";
+
     Renderer {
         textcolor = rgb(190, 190, 190);
     }
 }
+
 Button."Widget5" {
     Position = (360, 280);
     Size = (80, 29.3333);
     Text = "menu";
     TextSize = 13;
     renderer = &1;
+}
+
+Label."steps" {
+    Position = (300, 230);
+    Size = (167.2, 25.2043);
+    Text = "kroki: ";
+    TextSize = 16;
+
+    Renderer {
+        textcolor = rgba(255, 255, 255, 215);
+    }
 }

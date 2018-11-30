@@ -14,7 +14,7 @@ Menu::Menu(sf::RenderWindow &window, tgui::Theme &theme, sf::Texture &sokoban)
 	this->theme = theme;
 
 	main.loadWidgetsFromFile("menu.txt");
-	side.loadWidgetsFromFile("back.txt");
+	side.loadWidgetsFromFile("side.txt");
 	win.loadWidgetsFromFile("win.txt");
 	edit.loadWidgetsFromFile("edit.txt");
 	this->sokoban = sokoban;
@@ -47,21 +47,6 @@ Menu::Menu(sf::RenderWindow &window, tgui::Theme &theme, sf::Texture &sokoban)
 	getWidgetlist();
 
 	lvl = 1;
-
-	createSteps(window);
-
-}
-
-void Menu::createSteps(sf::RenderWindow & window)
-{
-	tgui::TextBox::Ptr stepsTxt = tgui::TextBox::create();
-	gui.setTarget( window );
-	stepsTxt->setPosition(680, 83);
-	stepsTxt->setSize(120, 120);
-	stepsTxt->setTextSize(18);
-	stepsTxt->setRenderer(theme.getRenderer("TextBox"));
-	stepsTxt->isReadOnly();
-	gui.add(stepsTxt, "steps");
 }
 
 void Menu::getWidgetlist()
@@ -134,7 +119,12 @@ std::vector<tgui::Button::Ptr> & Menu::getLvlButtons()
 
 tgui::TextBox::Ptr Menu::getSteps()
 {
-	return	gui.get<tgui::TextBox>("steps");
+	return	side.get<tgui::TextBox>("steps");
+}
+
+tgui::Label::Ptr Menu::getStepsTextBox()
+{
+	return win.get<tgui::Label>("steps");
 }
 
 std::vector<tgui::Widget::Ptr>  Menu::getEditButtons()
@@ -151,11 +141,6 @@ TileMap Menu::getTheme()
 TileMap Menu::getbTheme()
 {
 	return bTheme;
-}
-
-void Menu::drawGui()
-{
-	gui.draw();
 }
 
 void Menu::setLvl(int x)
