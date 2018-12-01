@@ -80,9 +80,6 @@ void MapCreator::createTmap()
 {
 	map_c.load(sokoban, sf::Vector2u(width, height), level_c, 13, 10);
 }
-std::vector<int> MapCreator::getLvl() {
-	return level_c;
-}
 TileMap MapCreator::getTmap()
 {
 	return map_c;

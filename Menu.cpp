@@ -172,12 +172,6 @@ void Menu::drawWin()
 {
 	win.draw();
 }
-
-void Menu::drawStep()
-{
-	step.draw();
-}
-
 int Menu::getLvl()
 {
 	return lvl;

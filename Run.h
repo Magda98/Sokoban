@@ -31,13 +31,21 @@ private:
 	void disconnectAll();
 public:
 	Run(sf::RenderWindow &window, sf::Texture &sokoban, tgui::Theme &theme);
+	//zwraca odpowiedni stan gry
 	int getGameState();
+	//³¹czy przyciski z odpowiednimi akcjami
 	void connectButtons();
+	// gameState = 0
 	void runMenu(sf::Event &event);
+	// gameState = 1
 	void runLvlchoose(sf::Event &event);
+	// gameState = 3
 	void runGame(sf::Event &event);
+	// gameState = 4
 	void runWin(sf::Event &event);
+	// gameState = 5
 	void runCreator(sf::Event &event);
+	// gameState = 2
 	void runEdit(sf::Event &event);
 };
 

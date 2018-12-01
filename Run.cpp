@@ -180,7 +180,7 @@ void Run::runMenu(sf::Event & event)
 		}
 		menu.setMainEventHandler(event);
 	}
-	window.clear(Color(55, 100, 100, 255));
+	window.clear(sf::Color(55, 100, 100, 255));
 	menu.getTheme().drawMap(window);
 	menu.drawMain();
 	window.display();
@@ -202,7 +202,7 @@ void Run::runLvlchoose(sf::Event & event)
 			delLvl = false;
 		}
 		menu.setLvlEventHandler(event);
-		window.clear(Color(55, 100, 100, 255));
+		window.clear(sf::Color(55, 100, 100, 255));
 
 
 		if (gameState == 3) {
@@ -252,7 +252,7 @@ void Run::runGame(sf::Event & event)
 
 		menu.setSideEventHandler(event);
 		// draw the map
-		window.clear(Color(55, 100, 100, 255));
+		window.clear(sf::Color(55, 100, 100, 255));
 		game.getTmap().drawMap(window);
 		for (auto e : game.getEndPoint()) {
 			window.draw(e);
@@ -280,7 +280,7 @@ void Run::runWin(sf::Event & event)
 	menu.getStepsTextBox()->setText("kroki: " + std::to_string(game.getSteps()));
 		menu.setWinEventHandler(event);
 		menu.setLvl(lvl);
-		window.clear(Color(55, 100, 100, 255));
+		window.clear(sf::Color(55, 100, 100, 255));
 		game.getTmap().drawMap(window);
 		for (auto e : game.getEndPoint()) {
 			window.draw(e);
@@ -300,7 +300,7 @@ void Run::runCreator(sf::Event & event)
 	{
 		if (event.type == sf::Event::Closed)
 		{
-			window.clear(Color(55, 100, 100, 255));
+			window.clear(sf::Color(55, 100, 100, 255));
 			window.close();
 			exit(0);
 		}
@@ -333,7 +333,7 @@ void Run::runCreator(sf::Event & event)
 		}
 	}
 
-		window.clear(Color(55, 100, 100, 255));
+		window.clear(sf::Color(55, 100, 100, 255));
 		menu.setSideEventHandler(event);
 		mcreate.getTmap().drawMap(window);
 		window.draw(mcreate.getPreview());
@@ -356,7 +356,7 @@ void Run::runEdit(sf::Event & event)
 		}
 	}
 		menu.setEditEventHandler(event);
-		window.clear(Color(55, 100, 100, 255));
+		window.clear(sf::Color(55, 100, 100, 255));
 		menu.getbTheme().drawMap(window);
 		menu.drawEdit();
 		window.display();

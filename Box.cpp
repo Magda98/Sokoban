@@ -5,7 +5,7 @@
 bool Box::checkColission(std::vector<sf::Sprite> Swall) {
 	bool move = true;
 	for (auto wall : Swall) {
-		if ((Box::getSprite()	.getGlobalBounds().intersects(wall.getGlobalBounds())))
+		if ((Box::getSprite().getGlobalBounds().intersects(wall.getGlobalBounds())))
 		{
 			move = false;
 		}
