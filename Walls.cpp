@@ -3,7 +3,7 @@
 std::vector<sf::Sprite> Walls::CreateWalls(std::vector<int> array)
 {
 	sf::Texture texture;
-	texture.create(64, 64);
+	texture.create(width, height);
 	int ile = 0;
 	for (int i = 0; i < 130; ++i)
 	{

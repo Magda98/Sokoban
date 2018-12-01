@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include "TileMap.h"
-class Menu
+class Menu : public Tile
 {
 private:
 	sf::Texture sokoban;

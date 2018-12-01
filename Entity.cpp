@@ -5,7 +5,7 @@
 
 void Entity::setPosition(int x, int y)
 {
-	sprite.setPosition((float)64 * x, (float)64 * y);
+	sprite.setPosition((float)width * x, (float)height * y);
 	this->x = x;
 	this->y = y;
 }

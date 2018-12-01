@@ -95,6 +95,7 @@
       </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>G:\prodzekty\cwiczenia_c++\sokobanv1\Sokoban\tgui\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -191,7 +192,7 @@
     <ClCompile Include="Walls.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="sokoban.png" />
+    <Image Include="icon.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

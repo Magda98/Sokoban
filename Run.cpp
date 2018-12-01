@@ -1,6 +1,5 @@
 #include "Run.h"
 
-
 Run::Run(sf::RenderWindow &rwindow, sf::Texture &sokoban, tgui::Theme &theme) : menu(rwindow, theme, sokoban), game(sokoban), mcreate(sokoban), window(rwindow)
 {
 
@@ -11,7 +10,10 @@ Run::Run(sf::RenderWindow &rwindow, sf::Texture &sokoban, tgui::Theme &theme) : 
 void Run::save()
 {
 	if (!editLvl)
+	{
 		mcreate.SaveLvl();
+		gameState = 2;
+	}
 	else {
 		mcreate.saveEditLvl(game.getLvlcount(), lvl);
 		editLvl = false;
@@ -25,12 +27,14 @@ void Run::save()
 void Run::creator()
 {
 	gameState = 2;
+	menu.getSideWidget()[3]->setVisible(false);
 	menu.getSideWidget()[0]->setVisible(false); 
 	menu.getSideWidget()[2]->setVisible(true);
 }
 
 void Run::start()
 {
+	menu.getSideWidget()[3]->setVisible(true);
 	if (game.getLvlcount() > 0) {
 		gameState = 1;
 		menu.getSideWidget()[0]->setVisible(true);
@@ -40,7 +44,7 @@ void Run::start()
 			bt->disconnectAll();
 			bt->connect("clicked", [&]() {
 				gameState = 3;
-				lvl = int(((bt->getAbsolutePosition().y - 71) / 64) * 11 + (bt->getAbsolutePosition().x - 71) / 64 + 1); });
+				lvl = int(((bt->getAbsolutePosition().y - 71) / menu.width) * 11 + (bt->getAbsolutePosition().x - 71) / menu.height + 1); });
 		}
 	}
 }
@@ -76,7 +80,7 @@ void Run::edit()
 		for (auto &bt : menu.getLvlButtons()) {
 			bt->disconnectAll();
 			bt->connect("clicked", [&]() {
-				lvl = int(((bt->getAbsolutePosition().y - 71) / 64) * 11 + (bt->getAbsolutePosition().x - 71) / 64 + 1);
+				lvl = int(((bt->getAbsolutePosition().y - 71) / menu.width) * 11 + (bt->getAbsolutePosition().x - 71) / menu.height + 1);
 				mcreate.loadLvl(lvl);
 				gameState = 5;
 				editLvl = true;
@@ -91,7 +95,7 @@ void Run::del()
 		gameState = 1;
 		for (auto &bt : menu.getLvlButtons()) {
 			bt->disconnectAll();
-			bt->connect("clicked", [&]() {lvl = int(((bt->getAbsolutePosition().y - 71) / 64) * 11 + (bt->getAbsolutePosition().x - 71) / 64 + 1);
+			bt->connect("clicked", [&]() {lvl = int(((bt->getAbsolutePosition().y - 71) / menu.width) * 11 + (bt->getAbsolutePosition().x - 71) / menu.height + 1);
 			game.deleteLvl(lvl, game.getLvlcount());
 			menu.createButtons(game.getLvlcount());
 			delLvl = true;
@@ -197,23 +201,23 @@ void Run::runLvlchoose(sf::Event & event)
 		}
 	}
 
-		if (delLvl == true) {
-			this->connectButtons();
-			delLvl = false;
-		}
-		menu.setLvlEventHandler(event);
-		window.clear(sf::Color(55, 100, 100, 255));
+	if (delLvl == true) {
+		this->connectButtons();
+		delLvl = false;
+	}
+	menu.setLvlEventHandler(event);
+	window.clear(sf::Color(55, 100, 100, 255));
 
 
-		if (gameState == 3) {
-			game.clearlvl();
-			game.loadLvl(lvl);
-			menu.setLvl(lvl);
-		}
+	if (gameState == 3) {
+		game.clearlvl();
+		game.loadLvl(lvl);
+		menu.setLvl(lvl);
+	}
 
-		menu.getbTheme().drawMap(window);
-		menu.drawLvl();
-		window.display();
+	menu.getbTheme().drawMap(window);
+	menu.drawLvl();
+	window.display();
 }
 
 void Run::runGame(sf::Event & event)
@@ -248,26 +252,31 @@ void Run::runGame(sf::Event & event)
 			}
 		}
 	}
-		game.checkIfWin(gameState);
+	game.checkIfWin(gameState);
 
-		menu.setSideEventHandler(event);
-		// draw the map
-		window.clear(sf::Color(55, 100, 100, 255));
-		game.getTmap().drawMap(window);
-		for (auto e : game.getEndPoint()) {
-			window.draw(e);
-		}
-		for (auto b : game.getBox()) {
-			window.draw(b);
-		}
-		window.draw(game.getPlayer());
-		menu.getSteps()->setText("\n kroki: " + std::to_string(game.getSteps()) + "\n \n poziom: " + std::to_string(lvl));
-		menu.drawSide();
-		window.display();
+	menu.setSideEventHandler(event);
+	// draw the map
+	window.clear(sf::Color(55, 100, 100, 255));
+	game.getTmap().drawMap(window);
+	for (auto e : game.getEndPoint()) {
+		window.draw(e);
+	}
+	for (auto b : game.getBox()) {
+		window.draw(b);
+	}
+	window.draw(game.getPlayer());
+	menu.getSteps()->setText("\n kroki: " + std::to_string(game.getSteps()) + "\n \n poziom: " + std::to_string(lvl));
+	menu.drawSide();
+	window.display();
 }
 
 void Run::runWin(sf::Event & event)
 {
+	if (lvl == game.getLvlcount())
+		menu.getWinWidget()[2]->setVisible(false);
+	else
+		menu.getWinWidget()[2]->setVisible(true);
+
 	if (window.pollEvent(event)) {
 
 		switch (event.type)
@@ -278,19 +287,19 @@ void Run::runWin(sf::Event & event)
 		}
 	}
 	menu.getStepsTextBox()->setText("kroki: " + std::to_string(game.getSteps()));
-		menu.setWinEventHandler(event);
-		menu.setLvl(lvl);
-		window.clear(sf::Color(55, 100, 100, 255));
-		game.getTmap().drawMap(window);
-		for (auto e : game.getEndPoint()) {
-			window.draw(e);
-		}
-		for (auto b : game.getBox()) {
-			window.draw(b);
-		}
-		window.draw(game.getPlayer());
-		menu.drawWin();
-		window.display();
+	menu.setWinEventHandler(event);
+	menu.setLvl(lvl);
+	window.clear(sf::Color(55, 100, 100, 255));
+	game.getTmap().drawMap(window);
+	for (auto e : game.getEndPoint()) {
+		window.draw(e);
+	}
+	for (auto b : game.getBox()) {
+		window.draw(b);
+	}
+	window.draw(game.getPlayer());
+	menu.drawWin();
+	window.display();
 	
 }
 
@@ -307,7 +316,7 @@ void Run::runCreator(sf::Event & event)
 
 		if (event.mouseButton.button == sf::Mouse::Left && event.type == sf::Event::MouseButtonReleased)
 		{
-			switch (c % 4) {
+			switch (abs(cPreview) % 4) {
 			case 0: mcreate.SetMap(sf::Mouse::getPosition(window));
 				break;
 			case 1:
@@ -326,23 +335,29 @@ void Run::runCreator(sf::Event & event)
 		{
 			mcreate.SetMap(sf::Mouse::getPosition(window), 1);
 		}
-		if (event.mouseButton.button == sf::Mouse::Middle && event.type == sf::Event::MouseButtonReleased)
+		if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::P )
 		{
-			c++;
-			mcreate.setPreview(c);
+			cPreview++;
+			mcreate.setPreview(cPreview);
+		}
+		if (event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta > 0)
+		{
+			cPreview++;
+			mcreate.setPreview(cPreview);
+		}
+		if (event.type == sf::Event::MouseWheelMoved && event.mouseWheel.delta < 0)
+		{
+			cPreview--;
+			mcreate.setPreview(cPreview);
 		}
 	}
-
-		window.clear(sf::Color(55, 100, 100, 255));
-		menu.setSideEventHandler(event);
-		mcreate.getTmap().drawMap(window);
-		window.draw(mcreate.getPreview());
-		window.draw(mcreate.getPl());
-			
-		menu.drawSide();
-		window.display();
-	
-
+	window.clear(sf::Color(55, 100, 100, 255));
+	menu.setSideEventHandler(event);
+	mcreate.getTmap().drawMap(window);
+	window.draw(mcreate.getPreview());
+	window.draw(mcreate.getPl());
+	menu.drawSide();
+	window.display();
 }
 
 void Run::runEdit(sf::Event & event)
@@ -355,11 +370,11 @@ void Run::runEdit(sf::Event & event)
 			exit(0);
 		}
 	}
-		menu.setEditEventHandler(event);
-		window.clear(sf::Color(55, 100, 100, 255));
-		menu.getbTheme().drawMap(window);
-		menu.drawEdit();
-		window.display();
+	menu.setEditEventHandler(event);
+	window.clear(sf::Color(55, 100, 100, 255));
+	menu.getbTheme().drawMap(window);
+	menu.drawEdit();
+	window.display();
 	
 }
 

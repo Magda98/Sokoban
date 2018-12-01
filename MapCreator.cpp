@@ -86,6 +86,7 @@ TileMap MapCreator::getTmap()
 }
 void MapCreator::setPreview(int crea)
 {
+	crea = abs(crea);
 	if (crea % 4 == 0)
 		preview.setTex(0, sokoban);
 	else if (crea % 4 == 1)

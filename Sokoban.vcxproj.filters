@@ -91,7 +91,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="sokoban.png">
+    <Image Include="icon.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

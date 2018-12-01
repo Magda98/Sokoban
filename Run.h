@@ -17,7 +17,7 @@ private:
 	tgui::Theme theme{ "themes/BabyBlue.txt" };
 	int gameState;
 	int lvl = 1;
-	int c;
+	int cPreview;
 	bool delLvl = false;
 	bool editLvl = false;
 	void save();

@@ -42,8 +42,8 @@ Menu::Menu(sf::RenderWindow &window, tgui::Theme &theme, sf::Texture &sokoban)
 		0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	};
-	mTheme.load(sokoban, sf::Vector2u(64, 64), menuTheme, 13, 10);
-	bTheme.load(sokoban, sf::Vector2u(64, 64), buttonTheme, 13, 10);
+	mTheme.load(sokoban, sf::Vector2u(width, height), menuTheme, 13, 10);
+	bTheme.load(sokoban, sf::Vector2u(width, height), buttonTheme, 13, 10);
 	getWidgetlist();
 
 	lvl = 1;
@@ -88,7 +88,7 @@ void Menu::createButtons(int lvl)
 	lvlButton->setTextSize(20);
 	for (int i = 0; i < lvl; ++i) {
 		tgui::Button::Ptr button = tgui::Button::copy(lvlButton);
-		button->setPosition((i % 11) * 64 + 71, (i / 11) * 64 + 71);
+		button->setPosition((i % 11) * width + 71, (i / 11) * height + 71);
 		button->setText(std::to_string(i + 1));
 		lvList.push_back(button);
 	}
