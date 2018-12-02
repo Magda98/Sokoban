@@ -30,6 +30,7 @@ Button."Widget3" {
     TextSize = 13;
     renderer = &1;
 }
+
 Button."Widget4" {
     Position = (604, 240);
     Size = (108, 37.2414);
@@ -38,3 +39,18 @@ Button."Widget4" {
     renderer = &1;
 }
 
+Button."Widget5" {
+    Position = (780, 12);
+    Size = (40, 40);
+    Text = "..";
+    TextSize = 13;
+
+    Renderer {
+        textcolor = rgb(100, 100, 100);
+        texture = "BabyBlue.png" Part(269, 40, 90, 60) Middle(30, 0, 30, 60);
+        texturedisabled = None;
+        texturedown = "BabyBlue.png" Part(177, 40, 90, 60) Middle(30, 0, 30, 60);
+        texturefocused = None;
+        texturehover = "BabyBlue.png" Part(361, 40, 90, 60) Middle(30, 0, 30, 60);
+    }
+}

@@ -34,6 +34,11 @@ void Run::creator()
 
 void Run::start()
 {
+	menu.getEditButtons()[0]->setVisible(false);
+	menu.getEditButtons()[1]->setVisible(false);
+	menu.getEditButtons()[2]->setVisible(false);
+	menu.getEditButtons()[3]->setVisible(false);
+	menu.getEditButtons()[4]->setVisible(false);
 	menu.getSideWidget()[3]->setVisible(true);
 	if (game.getLvlcount() > 0) {
 		gameState = 1;
@@ -75,6 +80,11 @@ void Run::backToMenu()
 
 void Run::edit()
 {
+	menu.getEditButtons()[0]->setVisible(false);
+	menu.getEditButtons()[1]->setVisible(false);
+	menu.getEditButtons()[2]->setVisible(false);
+	menu.getEditButtons()[3]->setVisible(false);
+	menu.getEditButtons()[4]->setVisible(true);
 	if (game.getLvlcount() > 0) {
 		gameState = 1;
 		for (auto &bt : menu.getLvlButtons()) {
@@ -91,6 +101,11 @@ void Run::edit()
 
 void Run::del()
 {
+	menu.getEditButtons()[0]->setVisible(false);
+	menu.getEditButtons()[1]->setVisible(false);
+	menu.getEditButtons()[2]->setVisible(false);
+	menu.getEditButtons()[3]->setVisible(false);
+	menu.getEditButtons()[4]->setVisible(true);
 	if (game.getLvlcount() > 0) {
 		gameState = 1;
 		for (auto &bt : menu.getLvlButtons()) {
@@ -126,6 +141,7 @@ void Run::disconnectAll()
 	menu.getEditButtons()[1]->disconnectAll();
 	menu.getEditButtons()[2]->disconnectAll();
 	menu.getEditButtons()[3]->disconnectAll();
+	menu.getEditButtons()[4]->disconnectAll();
 
 
 }
@@ -158,6 +174,7 @@ void Run::connectButtons()
 	menu.getEditButtons()[1]->connect("clicked", &Run::edit, this);
 	menu.getEditButtons()[2]->connect("clicked", &Run::del, this);
 	menu.getEditButtons()[3]->connect("clicked", [&]() {gameState = 0;});
+	menu.getEditButtons()[4]->connect("clicked", [&]() {gameState = 2; });
 }
 
 void Run::runMenu(sf::Event & event)
@@ -206,8 +223,8 @@ void Run::runLvlchoose(sf::Event & event)
 		delLvl = false;
 	}
 	menu.setLvlEventHandler(event);
+	menu.setEditEventHandler(event);
 	window.clear(sf::Color(55, 100, 100, 255));
-
 
 	if (gameState == 3) {
 		game.clearlvl();
@@ -217,6 +234,7 @@ void Run::runLvlchoose(sf::Event & event)
 
 	menu.getbTheme().drawMap(window);
 	menu.drawLvl();
+	menu.drawEdit();
 	window.display();
 }
 
@@ -366,6 +384,11 @@ void Run::runCreator(sf::Event & event)
 
 void Run::runEdit(sf::Event & event)
 {
+	menu.getEditButtons()[0]->setVisible(true);
+	menu.getEditButtons()[1]->setVisible(true);
+	menu.getEditButtons()[2]->setVisible(true);
+	menu.getEditButtons()[3]->setVisible(true);
+	menu.getEditButtons()[4]->setVisible(false);
 	if (window.pollEvent(event)) {
 		switch (event.type)
 		{
