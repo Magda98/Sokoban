@@ -273,10 +273,15 @@ void Run::runGame(sf::Event & event)
 void Run::runWin(sf::Event & event)
 {
 	if (lvl == game.getLvlcount())
+	{
 		menu.getWinWidget()[2]->setVisible(false);
+		menu.getStepsTextBox()->setText("kroki: " + std::to_string(game.getSteps()) + "\nTo jest ostatni etap!");
+	}
 	else
+	{
 		menu.getWinWidget()[2]->setVisible(true);
-
+		menu.getStepsTextBox()->setText("kroki: " + std::to_string(game.getSteps()));
+	}
 	if (window.pollEvent(event)) {
 
 		switch (event.type)

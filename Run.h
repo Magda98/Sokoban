@@ -14,7 +14,7 @@ private:
 	MapCreator mcreate;
 	sf::Texture sokoban;
 	sf::RenderWindow &window;
-	tgui::Theme theme{ "themes/BabyBlue.txt" };
+	tgui::Theme theme{ "BabyBlue.txt" };
 	int gameState;
 	int lvl = 1;
 	int cPreview;

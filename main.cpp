@@ -22,7 +22,7 @@ int main() {
 	tgui::Theme theme;
 	icon.loadFromFile("icon.png");
 	sokoban.loadFromFile("sokoban.png");
-	theme.load("themes/BabyBlue.txt");
+	theme.load("BabyBlue.txt");
 	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
 	Run run(window, sokoban, theme);

@@ -1,10 +1,10 @@
 Renderer.1 {
     textcolor = rgb(100, 100, 100);
-    texture = "themes/BabyBlue.png" Part(269, 40, 90, 60) Middle(30, 0, 30, 60);
+    texture = "BabyBlue.png" Part(269, 40, 90, 60) Middle(30, 0, 30, 60);
     texturedisabled = None;
-    texturedown = "themes/BabyBlue.png" Part(177, 40, 90, 60) Middle(30, 0, 30, 60);
+    texturedown = "BabyBlue.png" Part(177, 40, 90, 60) Middle(30, 0, 30, 60);
     texturefocused = None;
-    texturehover = "themes/BabyBlue.png" Part(361, 40, 90, 60) Middle(30, 0, 30, 60);
+    texturehover = "BabyBlue.png" Part(361, 40, 90, 60) Middle(30, 0, 30, 60);
     font = "ChakraPetch-Regular.ttf";
 }
 
