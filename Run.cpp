@@ -291,7 +291,6 @@ void Run::runWin(sf::Event & event)
 			exit(0);
 		}
 	}
-	menu.getStepsTextBox()->setText("kroki: " + std::to_string(game.getSteps()));
 	menu.setWinEventHandler(event);
 	menu.setLvl(lvl);
 	window.clear(sf::Color(55, 100, 100, 255));
