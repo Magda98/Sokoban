@@ -114,13 +114,19 @@ void Run::del()
 	menu.getEditButtons()[4]->setVisible(true);
 	if (game.getLvlcount() > 0) {
 		gameState = 1;
-		for (auto &bt : menu.getLvlButtons()) {
+		for (auto &bt : menu.getLvlButtons()) 
+		{
 			bt->disconnectAll();
 			bt->connect("clicked", [&]() {lvl = int(((bt->getAbsolutePosition().y - 71) / menu.width) * 11 + (bt->getAbsolutePosition().x - 71) / menu.height + 1);
-			game.deleteLvl(lvl, game.getLvlcount());
-			menu.createButtons(game.getLvlcount());
-			delLvl = true;
-			gameState = 2;
+				game.deleteLvl(lvl, game.getLvlcount());
+				menu.createButtons(game.getLvlcount());
+				delLvl = true;
+				gameState = 2;
+				menu.getEditButtons()[0]->setVisible(true);
+				menu.getEditButtons()[1]->setVisible(true);
+				menu.getEditButtons()[2]->setVisible(true);
+				menu.getEditButtons()[3]->setVisible(true);
+				menu.getEditButtons()[4]->setVisible(false);
 			});
 		}
 	}
