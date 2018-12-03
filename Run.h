@@ -29,6 +29,7 @@ private:
 	void edit();
 	void del();
 	void disconnectAll();
+	void back();
 public:
 	Run(sf::RenderWindow &window, sf::Texture &sokoban, tgui::Theme &theme);
 	//zwraca odpowiedni stan gry

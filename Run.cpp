@@ -30,6 +30,12 @@ void Run::creator()
 	menu.getSideWidget()[3]->setVisible(false);
 	menu.getSideWidget()[0]->setVisible(false); 
 	menu.getSideWidget()[2]->setVisible(true);
+
+	menu.getEditButtons()[0]->setVisible(true);
+	menu.getEditButtons()[1]->setVisible(true);
+	menu.getEditButtons()[2]->setVisible(true);
+	menu.getEditButtons()[3]->setVisible(true);
+	menu.getEditButtons()[4]->setVisible(false);
 }
 
 void Run::start()
@@ -146,6 +152,16 @@ void Run::disconnectAll()
 
 }
 
+void Run::back()
+{
+	menu.getEditButtons()[0]->setVisible(true);
+	menu.getEditButtons()[1]->setVisible(true);
+	menu.getEditButtons()[2]->setVisible(true);
+	menu.getEditButtons()[3]->setVisible(true);
+	menu.getEditButtons()[4]->setVisible(false);
+	gameState = 2;
+}
+
 
 int Run::getGameState()
 {
@@ -174,7 +190,7 @@ void Run::connectButtons()
 	menu.getEditButtons()[1]->connect("clicked", &Run::edit, this);
 	menu.getEditButtons()[2]->connect("clicked", &Run::del, this);
 	menu.getEditButtons()[3]->connect("clicked", [&]() {gameState = 0;});
-	menu.getEditButtons()[4]->connect("clicked", [&]() {gameState = 2; });
+	menu.getEditButtons()[4]->connect("clicked", &Run::back, this);
 }
 
 void Run::runMenu(sf::Event & event)
@@ -384,11 +400,6 @@ void Run::runCreator(sf::Event & event)
 
 void Run::runEdit(sf::Event & event)
 {
-	menu.getEditButtons()[0]->setVisible(true);
-	menu.getEditButtons()[1]->setVisible(true);
-	menu.getEditButtons()[2]->setVisible(true);
-	menu.getEditButtons()[3]->setVisible(true);
-	menu.getEditButtons()[4]->setVisible(false);
 	if (window.pollEvent(event)) {
 		switch (event.type)
 		{
