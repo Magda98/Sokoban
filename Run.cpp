@@ -31,11 +31,6 @@ void Run::creator()
 	menu.getSideWidget()[0]->setVisible(false); 
 	menu.getSideWidget()[2]->setVisible(true);
 
-	menu.getEditButtons()[0]->setVisible(true);
-	menu.getEditButtons()[1]->setVisible(true);
-	menu.getEditButtons()[2]->setVisible(true);
-	menu.getEditButtons()[3]->setVisible(true);
-	menu.getEditButtons()[4]->setVisible(false);
 }
 
 void Run::start()
@@ -122,11 +117,6 @@ void Run::del()
 				menu.createButtons(game.getLvlcount());
 				delLvl = true;
 				gameState = 2;
-				menu.getEditButtons()[0]->setVisible(true);
-				menu.getEditButtons()[1]->setVisible(true);
-				menu.getEditButtons()[2]->setVisible(true);
-				menu.getEditButtons()[3]->setVisible(true);
-				menu.getEditButtons()[4]->setVisible(false);
 			});
 		}
 	}
@@ -406,6 +396,11 @@ void Run::runCreator(sf::Event & event)
 
 void Run::runEdit(sf::Event & event)
 {
+	menu.getEditButtons()[0]->setVisible(true);
+	menu.getEditButtons()[1]->setVisible(true);
+	menu.getEditButtons()[2]->setVisible(true);
+	menu.getEditButtons()[3]->setVisible(true);
+	menu.getEditButtons()[4]->setVisible(false);
 	if (window.pollEvent(event)) {
 		switch (event.type)
 		{
