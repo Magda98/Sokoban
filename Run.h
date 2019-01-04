@@ -5,21 +5,26 @@
 #include "Game.h"
 #include "MapCreator.h"
 #include "Menu.h"
+/*!
+*	\brief klasa Run
+*
+*	G³ówny mechanizm gry
+*/
 class Run
 {
 
 private:
-	Menu menu;
-	Game game;
-	MapCreator mcreate;
-	sf::Texture sokoban;
-	sf::RenderWindow &window;
-	tgui::Theme theme{ "BabyBlue.txt" };
-	int gameState;
-	int lvl = 1;
-	int cPreview;
-	bool delLvl = false;
-	bool editLvl = false;
+	Menu menu;/*!< obiekt typu Menu*/
+	Game game;/*!< obiekt typu Game*/
+	MapCreator mcreate;/*!< obiekt typu MapCreator*/
+	sf::Texture sokoban;/*!< tekstura*/
+	sf::RenderWindow &window;/*!< okno gry*/
+	tgui::Theme theme{ "BabyBlue.txt" };/*!< motyw do menu*/
+	int gameState;/*!< aktualny stan gry*/
+	int lvl = 1;/*!< iloœæ etapów*/
+	int cPreview;/*!< aktualny rodzaj tekstury w podgl¹dzie */
+	bool delLvl = false;/*!< true je¿eli wybrano etap do usuniêcia*/
+	bool editLvl = false;/*!< true je¿eli wybrano etap do edycji*/
 	void save();
 	void creator();
 	void start();

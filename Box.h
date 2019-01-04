@@ -1,5 +1,10 @@
 #pragma once
 #include "Entity.h"
+/*!
+* \brief klasa Box
+*
+*	klasa obiektów typu skrzynki w grze,
+*/
 class Box : public Entity
 {
 public:

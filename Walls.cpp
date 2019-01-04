@@ -1,5 +1,14 @@
 #include "Walls.h"
 
+/*!
+*	\brief Tworzy œciany
+*
+*	tworzy vector o danej wielkoœci, ustawia pust¹ teksturê Sprite'a, potrzebne do wykrywania kolizji
+*
+*	\param[in] array vector opicuj¹cy dan¹ mapê
+*
+*	\return vector obiektów typu Sprite
+*/
 std::vector<sf::Sprite> Walls::CreateWalls(std::vector<int> array)
 {
 	sf::Texture texture;

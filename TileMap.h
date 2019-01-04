@@ -5,6 +5,11 @@
 #include "Entity.h"
 #include "Tile.h"
 
+/*!
+*	\brief klasa TileMap
+*
+*	Tworzy t³o oraz t³o map
+*/
 class TileMap :  public Entity
 {
 public:
@@ -13,7 +18,7 @@ public:
 	//rysuje mapê
 	void drawMap(sf::RenderWindow &window);
 private:
-	sf::VertexArray vertices;
-	sf::Texture sokoban;
+	sf::VertexArray vertices;/*!< VertexArray zawieraj¹cy informacjê o wierzcho³kach*/
+	sf::Texture sokoban;/*!< tekstura*/
 };
 

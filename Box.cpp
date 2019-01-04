@@ -1,7 +1,13 @@
 #include "Box.h"
 
 
-
+/*!
+*	\brief Sprawdza kolizjê miêdzy œcianami mapy, a skrzynk¹
+*
+*	\return czy mo¿na wykonaæ ruch true/false. 
+*
+* \param[in] Swall vector obiektów typu Sprite, które zawieraj¹ informacjê o œcianach danje mapy.
+*/
 bool Box::checkColission(std::vector<sf::Sprite> Swall) {
 	bool move = true;
 	for (auto wall : Swall) {
@@ -13,6 +19,13 @@ bool Box::checkColission(std::vector<sf::Sprite> Swall) {
 	return move;
 }
 
+/*!
+*	\brief Sprawdza kolizjê miêdzy dwiema skrzynkami
+*
+*	\return czy mo¿na wykonaæ ruch true/false.
+*
+*	\param[in] bx vector obiektów typu Box
+*/
 bool Box::chechBox(std::vector<Box> &bx, Box &xbox) {
 	bool move = true;
 	for (auto &box : bx) {

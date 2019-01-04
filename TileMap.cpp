@@ -2,7 +2,17 @@
 #include <SFML/Graphics.hpp>
 #include "TileMap.h"
 
-
+/*!
+*	\brief	odpowiada za tworzenie t³a/mapy
+*
+*	Tworzy tabelê wierzcho³ków kwadratów, ustawiaj¹c po kolei ich pozycje w oknie, nastêpnie ustawia koordynaty tekstury
+*
+*	\param[in,out] sokobanTexture tekstura
+*	\param[in] tileSize wielkoœæ jednego tile'a
+*	\param[in] tiles vector opisuj¹cy wygl¹d mapy/t³a
+*	\param[in] calcWidth obliczona szerokoœæ mapy 
+*	\param[in] calcHeight obliczona szerokoœæ mapy
+*/
 void TileMap:: load(sf::Texture &sokobanTexture, sf::Vector2u tileSize, std::vector<int> tiles, unsigned int calcWidth, unsigned int calcHeight)
 {
 
@@ -27,7 +37,11 @@ void TileMap:: load(sf::Texture &sokobanTexture, sf::Vector2u tileSize, std::vec
 		vertices[i * 4 + 3].texCoords = sf::Vector2f(float(tileNumber * tileSize.x), float(tileSize.y));
 	}
 }
-
+/*!
+*	\brief	Rysuje mapê/t³o w oknie
+*
+*	\param[in,out] window okno gry
+*/
 void TileMap::drawMap(sf::RenderWindow &window)
 {
 	window.draw(vertices, &sokoban);

@@ -1,6 +1,11 @@
 #include "MapCreator.h"
 
 
+/*!
+*	\brief Ustawia odpowiednio pocz¹tkowe wartoœci pól sk³adowych, ustawia teksturê
+*
+*	\param[in,out] sokoban tekstura
+*/
 MapCreator::MapCreator(sf::Texture &sokoban) {
 	level_c = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10,
@@ -21,12 +26,27 @@ MapCreator::MapCreator(sf::Texture &sokoban) {
 	preview.setTex(0, sokoban);
 	preview.setPosition(11, 2);
 }
+
+/*!
+*	\brief Ustawia odpowiedni¹ teksturê w danym miejscu mapy
+*
+*	Ustawia wybran¹ teksturê, w miejscu klikniêcia lewym przyciskiem myszy przez gracza, nastêpnie tworzy mapê gotow¹ do narysowania w oknie
+*
+*	\param[in] position pozycja w której znajdowa³ siê kursor podczas klikniêcia mysz¹
+*	\param[in] tile numer odpowiedniej tekstury 
+*/
 void MapCreator::SetMap(sf::Vector2i position, int tile )
 {
 	if ((position.x / width + (position.y / height) * 13) >= 0 && (position.x / width + (position.y / height) * 13) <= 129 && position.x < width*9 && width <= position.x && position.y < height*9 && height <= position.y)
 		level_c[position.x / width + (position.y / height) * 13] = tile;
 	createTmap();
 }
+
+/*!
+*	\brief	Zapisuje nowo stworzony etap w pliku tekstowym
+*
+*	Zapisuje poziom w pliku, najpierw warstwa mapy, poŸniej wspó³rzêdne postaci gracza, nastêpnie iloœæ skrzynek, pozycje skrzynek oraz pozycje punktów koñcowych 
+*/
 void MapCreator::SaveLvl()
 {
 	EpPosition();
@@ -51,15 +71,29 @@ void MapCreator::SaveLvl()
 	myfile << "\n";
 	myfile.close();
 }
+
+/*!
+*	\brief Pobiera pozycjê postaci gracza
+*
+*	\return pozycja postaci gracza
+*/
 sf::Sprite MapCreator::getPl()
 {
 	return pl_c.getSprite();
 }
+
+/*!
+*	\brief Ustawia odpowiedni¹ pozycjêpostaci gracza
+*/
 void MapCreator::PlPosition(sf::Vector2i position) {
 	if (position.x < 9*width && position.x >= width && position.y < 9*height && position.y >= height) {
 		pl_c.setPosition(position.x / width, (position.y / height));
 	}
 }
+
+/*!
+*	\brief Zapisuje odpowiednie pozyjce skrznek w vectorze
+*/
 void MapCreator::BxPosition() {
 	for (int i = 0; i < 130; i++) {
 		if (level_c[i] == 20) {
@@ -68,6 +102,10 @@ void MapCreator::BxPosition() {
 		}
 	}
 }
+
+/*!
+*	\brief Zapisuje odpowiednie pozycje punktów koñcowych w vectorze
+*/
 void MapCreator::EpPosition() {
 	for (int i = 0; i < 130; i++) {
 		if (level_c[i] == 24) {
@@ -76,14 +114,31 @@ void MapCreator::EpPosition() {
 		}
 	}
 }
+
+/*!
+*	\brief Tworzy mapê
+*
+*	Tworzy mapê z vectora int'ów level_c, u¿ywaj¹æ metody z klasy TileMap
+*/
 void MapCreator::createTmap()
 {
 	map_c.load(sokoban, sf::Vector2u(width, height), level_c, 13, 10);
 }
+
+/*!
+*	\brief Zwraca obiekt klasy TileMap, aby narysowaæ mapê w oknie
+*
+*	\return obiekt TileMap map_c
+*/
 TileMap MapCreator::getTmap()
 {
 	return map_c;
 }
+/*!
+*	\brief	Ustawia odpowiedni¹ teksturê w podgl¹dzie
+*
+*	\param[in] crea zewnêtrzny licznik, który jest inkrementowany lub dekrementowany przy u¿yciu Scrolla lub klawisza 'p'
+*/
 void MapCreator::setPreview(int crea)
 {
 	crea = abs(crea);
@@ -96,10 +151,21 @@ void MapCreator::setPreview(int crea)
 	else if (crea % 4 == 3)
 		preview.setTex(26, sokoban);
 }
+/*!
+*	\brief	Pobiera Sprite'a podgl¹du aby moæ go narysowaæ w oknie
+*
+*	\return Sprite podgl¹du
+*/
 sf::Sprite MapCreator::getPreview()
 {
 	return preview.getSprite();
 }
+/*!
+*	\brief	Zapisuje edytowany etap w pliku tekstowym
+*
+*	Tworzy nowy plik tekstowy zmienij¹c odpowidni¹ liniê,
+*	Zapisuje poziom w pliku, najpierw warstwa mapy, poŸniej wspó³rzêdne postaci gracza, nastêpnie iloœæ skrzynek, pozycje skrzynek oraz pozycje punktów koñcowych 
+*/
 void MapCreator::saveEditLvl(int lvl, int x)
 {
 	std::ofstream temp;
@@ -140,6 +206,11 @@ void MapCreator::saveEditLvl(int lvl, int x)
 	remove("map.txt");
 	rename("temp.txt", "map.txt");
 }
+/*!
+*	\brief Wczytuje dany poziom z pliku tekstowego
+*
+*	Wszystanie poziomu potrzebne podczas edycji poziomu
+*/
 void MapCreator::loadLvl(int lvl)
 {
 
@@ -176,6 +247,9 @@ void MapCreator::loadLvl(int lvl)
 	}
 	createTmap();
 }
+/*!
+*	\brief Resetuje odpowiednie pola sk³adowe 
+*/
 void MapCreator::clearMp()
 {
 	level_c = {

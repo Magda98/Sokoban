@@ -1,11 +1,17 @@
 #include "Player.h"
 
-
+/*!
+*	\brief Ustawia pole sk³adowe wall 
+*/
 void Player::setWall(std::vector<sf::Sprite>& w)
 {
 	wall = w;
 }
-
+/*!
+*	\brief sprawdza kolizjê postaci gracza ze œcianami
+*
+*	\return true - kiedy mo¿na wykonaæ ruch, false kiedy nie mo¿nago wykonaæ
+*/
 bool Player::checkColission(std::vector<sf::Sprite> Swall) {
 	bool move = true;
 	for (auto wall : Swall) {
@@ -17,7 +23,15 @@ bool Player::checkColission(std::vector<sf::Sprite> Swall) {
 	return move;
 }
 
-
+/*!
+*	\brief Porusza postaci¹ gracza w górê
+*
+*	Wykonuje ruch postaci¹, je¿eli nie jest on mo¿liwy postaæ wraca na swoje miejsce, nie jest to widoczne w oknie gry, poniewa¿ podczas wykonywnia tej funkcji okno nie odœwie¿a siê
+*
+*	\param[in,out] bx vector obiektów typu Box
+*	\param[in,out] sokoban tekstura
+*	\param[in,out] step licznik kroków
+*/
 void Player::move_up(std::vector<Box> &bx, sf::Texture &sokoban, int & step) {
 	setTex(5, sokoban);
 	Player::Move(0, -height);
@@ -45,6 +59,15 @@ void Player::move_up(std::vector<Box> &bx, sf::Texture &sokoban, int & step) {
 	}
 }
 
+/*!
+*	\brief Porusza postaci¹ gracza w dó³
+*
+*	Wykonuje ruch postaci¹, je¿eli nie jest on mo¿liwy postaæ wraca na swoje miejsce, nie jest to widoczne w oknie gry, poniewa¿ podczas wykonywnia tej funkcji okno nie odœwie¿a siê
+*
+*	\param[in,out] bx vector obiektów typu Box
+*	\param[in,out] sokoban tekstura
+*	\param[in,out] step licznik kroków
+*/
 void Player::move_down(std::vector<Box> &bx, sf::Texture &sokoban, int & step) {
 	setTex(4, sokoban);
 	Player::Move(0, height);
@@ -71,6 +94,15 @@ void Player::move_down(std::vector<Box> &bx, sf::Texture &sokoban, int & step) {
 	}
 }
 
+/*!
+*	\brief Porusza postaci¹ gracza w lewo
+*
+*	Wykonuje ruch postaci¹, je¿eli nie jest on mo¿liwy postaæ wraca na swoje miejsce, nie jest to widoczne w oknie gry, poniewa¿ podczas wykonywnia tej funkcji okno nie odœwie¿a siê
+*
+*	\param[in,out] bx vector obiektów typu Box
+*	\param[in,out] sokoban tekstura
+*	\param[in,out] step licznik kroków
+*/
 void Player::move_left(std::vector<Box> &bx, sf::Texture &sokoban, int & step) {
 	setTex(2, sokoban);
 	Player::Move(-width, 0);
@@ -98,6 +130,15 @@ void Player::move_left(std::vector<Box> &bx, sf::Texture &sokoban, int & step) {
 	}
 }
 
+/*!
+*	\brief Porusza postaci¹ gracza w prawo
+*
+*	Wykonuje ruch postaci¹, je¿eli nie jest on mo¿liwy postaæ wraca na swoje miejsce, nie jest to widoczne w oknie gry, poniewa¿ podczas wykonywnia tej funkcji okno nie odœwie¿a siê
+*
+*	\param[in,out] bx vector obiektów typu Box
+*	\param[in,out] sokoban tekstura
+*	\param[in,out] step licznik kroków
+*/
 void Player::move_right(std::vector<Box> &bx, sf::Texture &sokoban, int & step) {
 	setTex(3, sokoban);
 	Player::Move(width, 0);

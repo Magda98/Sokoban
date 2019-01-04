@@ -1,12 +1,22 @@
 #include "Run.h"
-
+/*!
+*	\brief	 konstruktor z parametrami i list¹ inicializacyjn¹
+*
+*	\param[in,out] rwindow okno gry
+*	\param[in,out] sokoban tekstura
+*	\param[in,out] theme motyw menu
+*/
 Run::Run(sf::RenderWindow &rwindow, sf::Texture &sokoban, tgui::Theme &theme) : menu(rwindow, theme, sokoban), game(sokoban), mcreate(sokoban), window(rwindow)
 {
 
 	menu.createButtons(game.getLvlcount());
 	gameState = 0;
 }
-
+/*!
+*	\brief zapisuje etap
+*
+*	W zale¿noœci od tego czy zapisujemu etap edytowany czy nowy
+*/
 void Run::save()
 {
 	if (!editLvl)
@@ -24,6 +34,9 @@ void Run::save()
 	mcreate.clearMp();
 }
 
+/*!
+*	\brief ustawia widocznoœæ przycisków dla kreatora map
+*/
 void Run::creator()
 {
 	gameState = 2;
@@ -33,6 +46,9 @@ void Run::creator()
 
 }
 
+/*!
+*	\brief	³¹czy przyciski w meny wyboru etapu z odpowiedni¹ funkcj¹
+*/
 void Run::start()
 {
 	menu.getEditButtons()[0]->setVisible(false);
@@ -55,6 +71,9 @@ void Run::start()
 	}
 }
 
+/*!
+*	\brief resetuje etap
+*/
 void Run::retry()
 {
 	game.clearlvl();
@@ -62,6 +81,9 @@ void Run::retry()
 	gameState = 3;
 }
 
+/*!
+*	\brief przechodzi do nastêpnego etapu
+*/
 void Run::next()
 {
 	if (lvl < game.getLvlcount())
@@ -72,13 +94,18 @@ void Run::next()
 		gameState = 3; 
 	}
 }
-
+/*!
+*	\brief powrót do menu, czyszczenie aktualnego etapu
+*/
 void Run::backToMenu()
 {
 	game.clearlvl();
 	gameState = 0;
 }
 
+/*!
+*	\brief wyœwietla przyciski listy etapów w menu edycji, ³¹czy je z odpowiedni¹ funkcj¹
+*/
 void Run::edit()
 {
 	menu.getEditButtons()[0]->setVisible(false);
@@ -100,6 +127,9 @@ void Run::edit()
 	}
 }
 
+/*!
+*	\brief	 wyœwietla przyciski listy etapów w menu usuwania, ³¹czy je z odpowiedni¹ funkcj¹
+*/
 void Run::del()
 {
 	menu.getEditButtons()[0]->setVisible(false);
@@ -122,6 +152,9 @@ void Run::del()
 	}
 }
 
+/*!
+*	\brief	 roz³¹cza wszystkie przyciski z funkcjami
+*/
 void Run::disconnectAll()
 {
 	menu.getMainWidget()[0]->disconnectAll();
@@ -148,6 +181,9 @@ void Run::disconnectAll()
 
 }
 
+/*!
+*	\brief	 powrót do poprzedniego menu, ustawienie widocznoœci odpowiednich przyscików
+*/
 void Run::back()
 {
 	menu.getEditButtons()[0]->setVisible(true);
@@ -158,12 +194,17 @@ void Run::back()
 	gameState = 2;
 }
 
-
+/*!
+*	\brief	 pobiera aktualny stan gry
+*/
 int Run::getGameState()
 {
 	return gameState;
 }
 
+/*!
+*	\brief	 ³¹czy wszystkie przyciski z odpowiednimi funkcjami
+*/
 void Run::connectButtons()
 {
 	disconnectAll();
@@ -189,6 +230,13 @@ void Run::connectButtons()
 	menu.getEditButtons()[4]->connect("clicked", &Run::back, this);
 }
 
+/*!
+*	\brief	 odpowiada za menu g³ówne
+*
+*	Rysuje na oknie menu g³ówne oraz t³o menu g³ównego
+*
+*	\param[in,out] event zdarzenie wykryte w oknie gry
+*/
 void Run::runMenu(sf::Event & event)
 {
 	if(window.pollEvent(event))
@@ -219,6 +267,13 @@ void Run::runMenu(sf::Event & event)
 	window.display();
 }
 
+/*!
+*	\brief	 Odpowiada za menu wyboru etapu
+*
+*	Rysuje menu wyboru etapu oraz t³o
+*
+*	\param[in,out] event zdarzenie wykryte w oknie gry
+*/
 void Run::runLvlchoose(sf::Event & event)
 {
 	if (window.pollEvent(event)) {
@@ -250,6 +305,13 @@ void Run::runLvlchoose(sf::Event & event)
 	window.display();
 }
 
+/*!
+*	\brief	 odpowiada za planszê
+*
+*	Rysuje na oknie planszê, wykrywa naciœniecie klawiszy sterowania, rysuje menu boczne, rysuje skrzynki, punkty koñcowe oraz postaæ gracza na mapie
+*
+*	\param[in,out] event zdarzenie wykryte w oknie gry
+*/
 void Run::runGame(sf::Event & event)
 {
 
@@ -300,6 +362,13 @@ void Run::runGame(sf::Event & event)
 	window.display();
 }
 
+/*!
+*	\brief	 odpowiada za menu wygranej
+*
+*	Rysuje na oknie menu wygranej, je¿eli etap zosta³ przejdziony
+*
+*	\param[in,out] event zdarzenie wykryte w oknie gry
+*/
 void Run::runWin(sf::Event & event)
 {
 	if (lvl == game.getLvlcount())
@@ -337,6 +406,13 @@ void Run::runWin(sf::Event & event)
 	
 }
 
+/*!
+*	\brief	 odpowiada za kreator map
+*
+*	Rysuje na oknie mapê kreatora map, wykrywa kliknieæie mysz¹ ustawiaj¹c dan¹ teksturê w klikniêtym miejscu mapy, usuwanie dodanej tekstury za pomoc¹ prawego przycisku myszy, zmienia rodzaj tekstury inkrementujac licznik b¹dŸ dekrementuj¹c - scroll up lub scroll down, 
+*
+*	\param[in,out] event zdarzenie wykryte w oknie gry
+*/
 void Run::runCreator(sf::Event & event)
 {
 	if (window.pollEvent(event))
@@ -394,6 +470,13 @@ void Run::runCreator(sf::Event & event)
 	window.display();
 }
 
+/*!
+*	\brief	 odpowiada za menu edycji
+*
+*	Rysuje na oknie menu edycji
+*
+*	\param[in,out] event zdarzenie wykryte w oknie gry
+*/
 void Run::runEdit(sf::Event & event)
 {
 	menu.getEditButtons()[0]->setVisible(true);

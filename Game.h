@@ -7,17 +7,22 @@
 #include "Walls.h"
 #include "EndPoint.h"
 #include "TileMap.h"
+/*!
+*	\brief klasa Game
+*
+*	klasa zawieraj¹ca informacjê o danej rozgrywce oraz zawieraj¹ca metody potrzebne do rozpoczêcia gry
+*/
 class Game
 {
 private:
-	int steps;
-	Player pl;
-	std::vector<Box> bx;
-	std::vector<EndPoint> ep;
-	std::vector<int> level;
-	sf::Texture sokoban;
-	Walls walls;
-	TileMap map;
+	int steps;/*!< Licznik kroków*/
+	Player pl;/*!< Obiekt typu Player,postaæ w grze */
+	std::vector<Box> bx;/*!< Vecotr ze skrzynkami*/
+	std::vector<EndPoint> ep;/*!< Vector z punktami koñcowymi*/
+	std::vector<int> level;/*!< Vector liczb ca³kowitych, informacje o mapie daneg etapu*/
+	sf::Texture sokoban;/*!< Tekstura*/
+	Walls walls;/*!< Obiekt typu Walls, informacje o œcianach danej mapy*/
+	TileMap map;/*!< Obiekt typu TileMap, informacje o mapie*/
 	void createWalls();
 	void loadTilemap();
 public:

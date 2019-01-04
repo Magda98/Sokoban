@@ -210,6 +210,7 @@
     <ClInclude Include="MapCreator.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="resource2.h" />
     <ClInclude Include="Run.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileMap.h" />
@@ -231,6 +232,10 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.png" />
+    <Image Include="sokoban_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Sokoban2.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

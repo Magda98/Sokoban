@@ -14,7 +14,11 @@
 #include "Menu.h"
 #include "Run.h"
 
-
+/*!
+*	\brief mechanizm gry
+*
+*	Odpowiada za stworzenie okna gry, wczytanie motywów, tekstur, ustawienie ikony, oraz g³ówna pêtla gry
+*/
 int main() {
 	sf::RenderWindow window(sf::VideoMode(832, 640), "Sokoban", sf::Style::Titlebar | sf::Style::Close);
 	sf::Texture sokoban;

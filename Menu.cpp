@@ -1,7 +1,14 @@
 #include "Menu.h"
 
 
-
+/*!
+*	\brief Konstruktor z parametrami
+*
+*	konstruktor ustawia odpowiednie pola sk³adowe, wczytuje menu z plików tekstowcyh, ustawia tekstury
+*
+*	\param[in,out] window okno gry
+*	\param[in,out] sokoban tekstura
+*/
 Menu::Menu(sf::RenderWindow &window, tgui::Theme &theme, sf::Texture &sokoban)
 {
 
@@ -49,6 +56,11 @@ Menu::Menu(sf::RenderWindow &window, tgui::Theme &theme, sf::Texture &sokoban)
 	lvl = 1;
 }
 
+/*!
+*	\brief Pobiera widgety
+*
+*	Pobiera widgety do vector'ów z obiektów typu Gui
+*/
 void Menu::getWidgetlist()
 {
 	mainWidget = main.getWidgets();
@@ -57,27 +69,46 @@ void Menu::getWidgetlist()
 	editWidget = edit.getWidgets();
 }
 
-
+/*!
+*	\brief Ustawia wykrywanie akcji klikniêcia menu g³ównego
+*/
 void Menu::setMainEventHandler(sf::Event & event)
 {
 	main.handleEvent(event);
 }
+/*!
+*	\brief Ustawia wykrywanie akcji klikniêcia menu bocznego
+*/
 void Menu::setSideEventHandler(sf::Event & event)
 {
 	side.handleEvent(event);
 }
+/*!
+*	\brief Ustawia wykrywanie akcji klikniêcia menu wyboru etapu
+*/
 void Menu::setLvlEventHandler(sf::Event & event)
 {
 	chooseLvl.handleEvent(event);
 }
+/*!
+*	\brief Ustawia wykrywanie akcji klikniêcia menu wygranej
+*/
 void Menu::setWinEventHandler(sf::Event & event)
 {
 	win.handleEvent(event);
 }
+/*!
+*	\brief Ustawia wykrywanie akcji klikniêcia menu bocznego edycji
+*/
 void Menu::setEditEventHandler(sf::Event & event)
 {
 	edit.handleEvent(event);
 }
+/*!
+*	\brief Tworzy odpowiedni¹ liczbê przycisków zale¿nie od iloœci etapów
+*
+*	Funkcja tworzy przyciski, nastêpnie ustawia je w oknie w odpowiednich miejscach, dodaje ka¿dy z nich do vector'a 
+*/
 void Menu::createButtons(int lvl)
 {
 	chooseLvl.removeAllWidgets();
@@ -97,81 +128,142 @@ void Menu::createButtons(int lvl)
 	}
 }
 
+/*!
+*	\brief Zwraca widgety menu g³ównego
+*
+*	\return vector widgetów menu g³ownego
+*/
 std::vector<tgui::Widget::Ptr> Menu::getMainWidget()
 {
 	return mainWidget;
 }
 
+/*!
+*	\brief Zwraca widgety menu bocznego
+*
+*	\return vector widgetów menu bocznego
+*/
 std::vector<tgui::Widget::Ptr> Menu::getSideWidget()
 {
 	return  sideWidget;
 }
 
+/*!
+*	\brief Zwraca widgety menu wygranej
+*
+*	\return vector widgetów menu wygranej
+*/
 std::vector<tgui::Widget::Ptr> Menu::getWinWidget()
 {
 	return winWidget;
 }
 
+/*!
+*	\brief Zwraca przyciski menu wyboru etapu
+*
+*	\return vector wskaŸników do przycisków menu wyboru etapu
+*/
 std::vector<tgui::Button::Ptr> & Menu::getLvlButtons()
 {
 	return lvList;
 }
-
+/*!
+*	\brief Zwraca wskaŸnik do pola tekstowego w którym znajduje siê liczba kroków
+*
+*	\return wskaŸnik do pola tekstowego
+*/
 tgui::TextBox::Ptr Menu::getSteps()
 {
 	return	side.get<tgui::TextBox>("steps");
 }
 
+/*!
+*	\brief Zwraca wskaŸnik do etykiety znajduj¹cej siê w menu wygranej, wyœwietlaj¹cej informacje o liczbie kroków
+*
+*	\return wskaŸnik do etykiety
+*/
 tgui::Label::Ptr Menu::getStepsTextBox()
 {
 	return win.get<tgui::Label>("steps");
 }
 
+/*!
+*	\brief Zwraca widgety menu edycji
+*
+*	\return vector widgetów menu edycji
+*/
 std::vector<tgui::Widget::Ptr>  Menu::getEditButtons()
 {
 	return editWidget;
 }
 
-
+/*!
+*	\brief Zwraca TileMap menu g³ównego
+*/
 TileMap Menu::getTheme()
 {
 	return mTheme;
 }
-
+/*!
+*	\brief Zwraca TileMap menu wyboru etapu/ menu edycji
+*/
 TileMap Menu::getbTheme()
 {
 	return bTheme;
 }
 
+/*!
+*	\brief Ustawia liczbê etapów
+*
+*	\param[in] x liczba etapów
+*/
 void Menu::setLvl(int x)
 {
 	lvl = x;
 }
 
+/*!
+*	\brief Rysuje menu g³ówne w oknie gry
+*/
 void Menu::drawMain()
 {
 	main.draw();
 }
 
+/*!
+*	\brief Rysuje menu boczne w oknie gry
+*/
 void Menu::drawSide()
 {
 	side.draw();
 }
 
+/*!
+*	\brief Rysuje menu edycji w oknie gry
+*/
 void Menu::drawEdit()
 {
 	edit.draw();
 }
 
+/*!
+*	\brief Rysuje menu wyboru etapu w oknie gry
+*/
 void Menu::drawLvl()
 {
 	chooseLvl.draw();
 }
 
+/*!
+*	\brief Rysuje menu wygranej w oknie gry
+*/
 void Menu::drawWin()
 {
 	win.draw();
 }
+/*!
+*	\brief Zwraca liczbê etapów przechowywan¹ w klasie Menu
+*/
 int Menu::getLvl()
 {
 	return lvl;

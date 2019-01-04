@@ -6,17 +6,23 @@
 #include "EndPoint.h"
 #include "Box.h"
 #include "TileMap.h"
+
+/*!
+*	\brief klasa MapCreator
+*
+*	Klasa odpowiadaj¹ca za tworzenie oraz edycjê map
+*/
 class MapCreator : public Entity
 {
 private:
-	sf::Texture sokoban;
-	std::vector<int> level_c;
-	Player pl_c;
-	std::ofstream myfile;
-	std::vector<int> ep_c;
-	std::vector<int> bx_c;
-	Entity preview;
-	TileMap map_c;
+	sf::Texture sokoban;/*!< Tekstura*/
+	std::vector<int> level_c;/*!< Vector int'ów opisuj¹cy poziom*/
+	Player pl_c;/*!< obiekt typu Player*/
+	std::ofstream myfile;/*!< Obs³uga pliku z mapami*/
+	std::vector<int> ep_c;/*!< Vector zawieraj¹cy pozycjê punktów koñcowych*/
+	std::vector<int> bx_c;/*!< Vector zawieraj¹cy pozycjê skrzynek*/
+	Entity preview;/*!< obekt typu Entity, podgl¹d aktulanie wybranego elementu w kreatorze map*/
+	TileMap map_c;/*!< Obiekt mapy tworzonej przez gracza*/
 	void BxPosition();
 	void EpPosition();
 	void createTmap();

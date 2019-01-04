@@ -3,11 +3,16 @@
 #include <SFML/Audio.hpp>
 #include "Box.h"
 #include <SFML/Graphics.hpp>
+/*!
+*	\brief klasa Player
+*
+*	Opisuje poruszanie siê postaci gracza, wykrywanie kolizji gracza ze œcianami i obiekatami typu Box
+*/
 class Player : public Entity
 {
 
 private:
-	std::vector<sf::Sprite> wall;
+	std::vector<sf::Sprite> wall;/*!< vector obiektów typu Sprite */
 public:
 	//ustawia œciany etapu
 	void setWall(std::vector<sf::Sprite> &w);
